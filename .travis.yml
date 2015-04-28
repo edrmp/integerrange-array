@@ -1,0 +1,18 @@
+language: python
+
+python:
+- "3.4"
+
+addons:
+  postgresql: "9.3"
+
+install:
+- pip install -r requirements.txt
+
+script:
+- python manage.py test
+
+
+before_script:
+  - psql -c 'create database "integerrange-array";' -U postgres
+  - python manage.py migrate
